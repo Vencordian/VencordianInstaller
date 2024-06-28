@@ -2,9 +2,9 @@ $DOWNLOAD_CLI = "https://github.com/RobinRMC/VencordPlusInstaller/releases/lates
 $DOWNLOAD_GUI = "https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/download/VencordInstaller.exe"
 
 if ([Environment]::Is64BitOperatingSystem -and [System.Environment]::OSVersion.Version.Major -ge 10) {
-	Write-Output "=============================="
-	Write-Output "|      Vencord Installer     |"
-	Write-Output "=============================="
+	Write-Output "==============================="
+	Write-Output "|      Vencord+ Installer     |"
+	Write-Output "==============================="
 	Write-Output ""
 	Write-Output "Which installer version do you want to use?"
 	Write-Output "1) Graphical - More user friendly but may not work on old/low-end GPUs"
@@ -36,7 +36,7 @@ Write-Output ""
 
 if ($choice -eq 2) {
 	Write-Output "What do you want to do?"
-	Write-Output "1) Install Vencord"
+	Write-Output "1) Install Vencord+"
 	Write-Output "2) Install OpenAsar"
 	Write-Output "3) Uninstall Vencord"
 	Write-Output "4) Uninstall OpenAsar"

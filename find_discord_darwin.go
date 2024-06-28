@@ -49,7 +49,7 @@ func FindDiscords() []any {
 	for branch, dirname := range macosNames {
 		p := "/Applications/" + dirname
 		if discord := ParseDiscord(p, branch); discord != nil {
-			fmt.Println("Found Discord Install at", p)
+			fmt.Println("Found Discord installation at", p)
 			discords = append(discords, discord)
 		}
 	}

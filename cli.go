@@ -34,12 +34,12 @@ func main() {
 	InitGithubDownloader()
 	discords = FindDiscords()
 
-	var installFlag = flag.Bool("install", false, "Install Vencord on a Discord install")
+	var installFlag = flag.Bool("install", false, "Install Vencord+ on a Discord installation")
 	var updateFlag = flag.Bool("reinstall", false, "Reinstall & update Vencord")
-	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Vencord from a Discord install")
-	var installOpenAsar = flag.Bool("install-openasar", false, "Install OpenAsar on a Discord install")
-	var uninstallOpenAsar = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar from a Discord install")
-	var locationFlag = flag.String("location", "", "Select the location of your Discord install")
+	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Vencord from a Discord installation")
+	var installOpenAsar = flag.Bool("install-openasar", false, "Install OpenAsar on a Discord installation")
+	var uninstallOpenAsar = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar from a Discord installation")
+	var locationFlag = flag.String("location", "", "Select the location of your Discord installation")
 	var branchFlag = flag.String("branch", "", "Select the branch of Discord you want to modify [auto|stable|ptb|canary]")
 	flag.Parse()
 
@@ -57,7 +57,7 @@ func main() {
 		}
 	}
 
-	fmt.Println("Vencord Installer cli", InstallerTag, "("+InstallerGitHash+")")
+	fmt.Println("Vencord+ Installer CLI", InstallerTag, "("+InstallerGitHash+")")
 
 	var err error
 	if *installFlag {
@@ -103,7 +103,7 @@ func PromptDiscord(action, dir, branch string) *DiscordInstall {
 				}
 			}
 		}
-		die("No Discord install found. Try manually specifying it with the --dir flag")
+		die("No Discord installation found. Try manually specifying it with the --dir flag")
 	}
 
 	if branch != "" {
@@ -120,11 +120,11 @@ func PromptDiscord(action, dir, branch string) *DiscordInstall {
 		if discord := ParseDiscord(dir, branch); discord != nil {
 			return discord
 		} else {
-			die(dir + " is not a valid Discord install")
+			die(dir + " is not a valid Discord installation")
 		}
 	}
 
-	fmt.Println("Please choose a Discord install to", action)
+	fmt.Println("Please choose a Discord installation to", action)
 
 	for i, discord := range discords {
 		install := discord.(*DiscordInstall)
@@ -166,7 +166,7 @@ func InstallLatestBuilds() error {
 
 func HandleScuffedInstall() {
 	fmt.Println("Hold On!")
-	fmt.Println("You have a broken Discord Install.")
+	fmt.Println("You have a broken Discord installation.")
 	fmt.Println("Please reinstall Discord before proceeding!")
 	fmt.Println("Otherwise, Vencord will likely not work.")
 }

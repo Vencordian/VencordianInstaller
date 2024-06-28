@@ -14,7 +14,7 @@ import (
 var IsInstallerOutdated = false
 
 func CheckSelfUpdate() {
-	fmt.Println("Checking for Installer Updates...")
+	fmt.Println("Checking for installer updates...")
 
 	res, err := GetGithubRelease(InstallerReleaseUrl, InstallerReleaseUrlFallback)
 	if err == nil {
@@ -25,9 +25,9 @@ func CheckSelfUpdate() {
 func GetInstallerDownloadLink() string {
 	switch runtime.GOOS {
 	case "windows":
-		return "https://github.com/Vencord/Installer/releases/latest/download/VencordInstaller.exe"
+		return "https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/download/VencordInstaller.exe"
 	case "darwin":
-		return "https://github.com/Vencord/Installer/releases/latest/download/VencordInstaller.MacOS.zip"
+		return "https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/download/VencordInstaller.MacOS.zip"
 	default:
 		return ""
 	}
@@ -38,5 +38,5 @@ func GetInstallerDownloadMarkdown() string {
 	if link == "" {
 		return ""
 	}
-	return " [Download the latest Installer](" + link + ")"
+	return " [Download the latest installer](" + link + ")"
 }

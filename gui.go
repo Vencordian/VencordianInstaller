@@ -67,7 +67,7 @@ func main() {
 		g.Update()
 	}()
 
-	win = g.NewMasterWindow("Vencord(Plus) Installer", 1200, 800, 0)
+	win = g.NewMasterWindow("Vencord+ Installer", 1200, 800, 0)
 
 	icon, _, err := image.Decode(bytes.NewReader(iconBytes))
 	if err != nil {
@@ -113,7 +113,7 @@ func InstallLatestBuilds() (err error) {
 
 	err = installLatestBuilds()
 	if err != nil {
-		ShowModal("Uh Oh!", "Failed to install the latest Vencord builds from GitHub:\n"+err.Error())
+		ShowModal("Uh Oh!", "Failed to install the latest Vencord+ builds from GitHub:\n"+err.Error())
 	}
 	return
 }
@@ -376,8 +376,8 @@ func renderInstaller() g.Widget {
 		g.Style().SetFontSize(20).To(
 			renderErrorCard(
 				DiscordYellow,
-				"**Github** and **vencord.dev** are the only official places to get Vencord. Any other site claiming to be us is malicious.\n"+
-					"If you downloaded from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
+				"**GitHub** is the only official place to get Vencord+. Any other site claiming to be Vencord+ is malicious.\n"+
+					"If you downloaded Vencord+ from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
 				90,
 			),
 		),
@@ -385,11 +385,11 @@ func renderInstaller() g.Widget {
 		g.Dummy(0, 5),
 
 		g.Style().SetFontSize(30).To(
-			g.Label("Please select an install to patch"),
+			g.Label("Please select an installation to patch"),
 		),
 
 		&CondWidget{len(discords) == 0, func() g.Widget {
-			return g.Label("No Discord installs found. You first need to install Discord.")
+			return g.Label("No Discord installations found. You first need to install Discord.")
 		}, nil},
 
 		g.Style().SetFontSize(20).To(
@@ -466,7 +466,7 @@ func renderInstaller() g.Widget {
 						g.Button("Install").
 							OnClick(handlePatch).
 							Size((w-40)/4, 50),
-						Tooltip("Patch the selected Discord Install"),
+						Tooltip("Patch the selected Discord installation"),
 					),
 				g.Style().
 					SetColor(g.StyleColorButton, DiscordBlue).
@@ -492,7 +492,7 @@ func renderInstaller() g.Widget {
 						g.Button("Uninstall").
 							OnClick(handleUnpatch).
 							Size((w-40)/4, 50),
-						Tooltip("Unpatch the selected Discord Install"),
+						Tooltip("Unpatch the selected Discord installation"),
 					),
 				g.Style().
 					SetColor(g.StyleColorButton, Ternary(isOpenAsar, DiscordRed, DiscordGreen)).
@@ -506,22 +506,22 @@ func renderInstaller() g.Widget {
 		),
 
 		InfoModal("#patched", "Successfully Patched", "If Discord is still open, fully close it first.\n"+
-			"Then, start it and verify Vencord installed successfully by looking for its category in Discord Settings"),
+			"Then, start it and verify Vencord installed successfully by looking for its category in your Discord client's settings."),
 		InfoModal("#unpatched", "Successfully Unpatched", "If Discord is still open, fully close it first. Then start it again, it should be back to stock!"),
-		InfoModal("#scuffed-install", "Hold On!", "You have a broken Discord Install.\n"+
+		InfoModal("#scuffed-install", "Hold On!", "You have a broken Discord installation.\n"+
 			"Sometimes Discord decides to install to the wrong location for some reason!\n"+
 			"You need to fix this before patching, otherwise Vencord will likely not work.\n\n"+
-			"Use the below button to jump there and delete any folder called Discord or Squirrel.\n"+
-			"If the folder is now empty, feel free to go back a step and delete that folder too.\n"+
-			"Then see if Discord still starts. If not, reinstall it"),
+			"Use the button below to jump there and delete any folder called Discord or Squirrel.\n"+
+			"When the folder is empty, feel free to go back a step and delete that folder too.\n"+
+			"Now see if Discord still starts. If not, reinstall it"),
 		RawInfoModal("#openasar-confirm", "OpenAsar", "OpenAsar is an open-source alternative of Discord desktop's app.asar.\n"+
 			"Vencord is in no way affiliated with OpenAsar.\n"+
 			"You're installing OpenAsar at your own risk. If you run into issues with OpenAsar,\n"+
-			"no support will be provided, join the OpenAsar Server instead!\n\n"+
+			"no support will be provided. Join the OpenAsar Discord server instead!\n\n"+
 			"To install OpenAsar, press Accept and click 'Install OpenAsar' again.", true),
 		InfoModal("#openasar-patched", "Successfully Installed OpenAsar", "If Discord is still open, fully close it first. Then start it again and verify OpenAsar installed successfully!"),
 		InfoModal("#openasar-unpatched", "Successfully Uninstalled OpenAsar", "If Discord is still open, fully close it first. Then start it again and it should be back to stock!"),
-		InfoModal("#invalid-custom-location", "Invalid Location", "The specified location is not a valid Discord install. Make sure you select the base folder."),
+		InfoModal("#invalid-custom-location", "Invalid Location", "There is no valid Discord installation at the specified location. Make sure you select the base folder."),
 		InfoModal("#modal"+strconv.Itoa(modalId), modalTitle, modalMessage),
 	}
 
@@ -566,7 +566,7 @@ func loop() {
 		Layout(
 			g.Align(g.AlignCenter).To(
 				g.Style().SetFontSize(40).To(
-					g.Label("Vencord Installer"),
+					g.Label("Vencord+ Installer"),
 				),
 			),
 
@@ -595,15 +595,15 @@ func loop() {
 						if IsDevInstall {
 							return g.Label("Not updating Vencord due to being in DevMode")
 						}
-						return g.Label("Latest Vencord Version: " + LatestHash)
+						return g.Label("Latest Vencord+ version: " + LatestHash)
 					}, func() g.Widget {
-						return renderErrorCard(DiscordRed, "Failed to fetch Info from GitHub: "+GithubError.Error(), 40)
+						return renderErrorCard(DiscordRed, "Failed to fetch information from GitHub: "+GithubError.Error(), 40)
 					},
 				},
 				&CondWidget{
 					IsInstallerOutdated,
 					func() g.Widget {
-						return renderErrorCard(DiscordYellow, "This Installer is outdated!"+GetInstallerDownloadMarkdown(), 40)
+						return renderErrorCard(DiscordYellow, "This installer is outdated!"+GetInstallerDownloadMarkdown(), 40)
 					},
 					nil,
 				},

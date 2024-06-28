@@ -34,10 +34,10 @@ func init() {
 	}
 	if sudoUser != "" {
 		if sudoUser == "root" {
-			panic("VencordInstaller must not be run as the root user. Please rerun as normal user. Use sudo or doas to run as root.")
+			panic("VencordPlusInstaller must not be run as the root user. Please rerun as normal user. Use sudo or doas to run as root.")
 		}
 
-		fmt.Println("VencordInstaller was run with root privileges, actual user is", sudoUser)
+		fmt.Println("VencordPlusInstaller was run with root privileges, actual user is", sudoUser)
 		fmt.Println("Looking up HOME of", sudoUser)
 
 		u, err := user.Lookup(sudoUser)
@@ -48,7 +48,7 @@ func init() {
 			_ = os.Setenv("HOME", u.HomeDir)
 		}
 	} else if os.Getuid() == 0 {
-		panic("VencordInstaller was run as root but neither SUDO_USER nor DOAS_USER are set. Please rerun me as a normal user, with sudo/doas, or manually set SUDO_USER to your username")
+		panic("VencordPlusInstaller was run as root but neither SUDO_USER nor DOAS_USER are set. Please rerun me as a normal user, with sudo/doas, or manually set SUDO_USER to your username")
 	}
 	Home = os.Getenv("HOME")
 
@@ -87,7 +87,7 @@ func ParseDiscord(p, _ string) *DiscordInstall {
 		isSystemElectron = true
 		isPatched = ExistsFile(path.Join(p, "_app.asar.unpacked"))
 	} else {
-		fmt.Println("Tried to parse invalid Location:", p)
+		fmt.Println("Tried to parse invalid location:", p)
 		return nil
 	}
 
@@ -120,7 +120,7 @@ func FindDiscords() []any {
 
 			discordDir := path.Join(dir, name)
 			if discord := ParseDiscord(discordDir, ""); discord != nil {
-				fmt.Println("Found Discord install at ", discordDir)
+				fmt.Println("Found Discord installation at ", discordDir)
 				discords = append(discords, discord)
 			}
 		}
@@ -137,14 +137,14 @@ func FixOwnership(p string) error {
 		return nil
 	}
 
-	fmt.Println("Fixing Ownership of", p)
+	fmt.Println("Fixing ownership of", p)
 
 	sudoUser := os.Getenv("SUDO_USER")
 	if sudoUser == "" {
 		panic("SUDO_USER was empty. This point should never be reached")
 	}
 
-	fmt.Println("Looking up User", sudoUser)
+	fmt.Println("Looking up user", sudoUser)
 	u, err := user.Lookup(sudoUser)
 	if err != nil {
 		fmt.Println("Lookup failed:", err)

@@ -28,7 +28,7 @@ curl -sS https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/downlo
 chmod +x "$outfile"
 
 echo
-echo "Now running VencordInstaller"
+echo "Now running VencordPlusInstaller"
 echo "Do you want to run as root? [Y|n]"
 echo "This is necessary if Discord is in a root owned location like /usr/share or /opt"
 printf "> "
@@ -44,7 +44,7 @@ if [ -z "$opt" ] || [ "$opt" = y ] || [ "$opt" = yes ]; then
     echo "Running with doas"
     doas env "$@" "$outfile"
   else
-    echo "Neither sudo nor doas were found. Please install either of them to proceed."
+    echo "Neither sudo nor doas was found. Please install either of them to proceed."
   fi
 else
   echo "Running unprivileged"

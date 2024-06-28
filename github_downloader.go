@@ -122,7 +122,7 @@ func InitGithubDownloader() {
 	//goland:noinspection GoUnhandledErrorResult
 	defer f.Close()
 
-	fmt.Println("Found existing Vencord Install. Checking for hash...")
+	fmt.Println("Found existing Vencord installation. Checking for hash...")
 	scanner := bufio.NewScanner(f)
 	if scanner.Scan() {
 		line := scanner.Text()
