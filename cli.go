@@ -34,7 +34,7 @@ func main() {
 	InitGithubDownloader()
 	discords = FindDiscords()
 
-	var installFlag = flag.Bool("install", false, "Install Vencord+ on a Discord installation")
+	var installFlag = flag.Bool("install", false, "Install Vencordian on a Discord installation")
 	var updateFlag = flag.Bool("reinstall", false, "Reinstall & update Vencord")
 	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Vencord from a Discord installation")
 	var installOpenAsar = flag.Bool("install-openasar", false, "Install OpenAsar on a Discord installation")
@@ -57,7 +57,7 @@ func main() {
 		}
 	}
 
-	fmt.Println("Vencord+ Installer CLI", InstallerTag, "("+InstallerGitHash+")")
+	fmt.Println("Vencordian Installer CLI", InstallerTag, "("+InstallerGitHash+")")
 
 	var err error
 	if *installFlag {

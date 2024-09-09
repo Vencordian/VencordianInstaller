@@ -67,7 +67,7 @@ func main() {
 		g.Update()
 	}()
 
-	win = g.NewMasterWindow("Vencord+ Installer", 1200, 800, 0)
+	win = g.NewMasterWindow("Vencordian Installer", 1200, 800, 0)
 
 	icon, _, err := image.Decode(bytes.NewReader(iconBytes))
 	if err != nil {
@@ -113,7 +113,7 @@ func InstallLatestBuilds() (err error) {
 
 	err = installLatestBuilds()
 	if err != nil {
-		ShowModal("Uh Oh!", "Failed to install the latest Vencord+ builds from GitHub:\n"+err.Error())
+		ShowModal("Uh Oh!", "Failed to install the latest Vencordian builds from GitHub:\n"+err.Error())
 	}
 	return
 }
@@ -376,8 +376,8 @@ func renderInstaller() g.Widget {
 		g.Style().SetFontSize(20).To(
 			renderErrorCard(
 				DiscordYellow,
-				"**GitHub** is the only official place to get Vencord+. Any other site claiming to be Vencord+ is malicious.\n"+
-					"If you downloaded Vencord+ from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
+				"**GitHub** is the only official place to get Vencordian. Any other site claiming to be Vencordian is malicious.\n"+
+					"If you downloaded Vencordian from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
 				90,
 			),
 		),
@@ -566,7 +566,7 @@ func loop() {
 		Layout(
 			g.Align(g.AlignCenter).To(
 				g.Style().SetFontSize(40).To(
-					g.Label("Vencord+ Installer"),
+					g.Label("Vencordian Installer"),
 				),
 			),
 
@@ -595,7 +595,7 @@ func loop() {
 						if IsDevInstall {
 							return g.Label("Not updating Vencord due to being in DevMode")
 						}
-						return g.Label("Latest Vencord+ version: " + LatestHash)
+						return g.Label("Latest Vencordian version: " + LatestHash)
 					}, func() g.Widget {
 						return renderErrorCard(DiscordRed, "Failed to fetch information from GitHub: "+GithubError.Error(), 40)
 					},

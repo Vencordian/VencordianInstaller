@@ -25,9 +25,9 @@ func CheckSelfUpdate() {
 func GetInstallerDownloadLink() string {
 	switch runtime.GOOS {
 	case "windows":
-		return "https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/download/VencordInstaller.exe"
+		return "https://github.com/Vencordian/VencordianInstaller/releases/latest/download/VencordInstaller.exe"
 	case "darwin":
-		return "https://github.com/RobinRMC/VencordPlusInstaller/releases/latest/download/VencordInstaller.MacOS.zip"
+		return "https://github.com/Vencordian/VencordianInstaller/releases/latest/download/VencordInstaller.MacOS.zip"
 	default:
 		return ""
 	}
